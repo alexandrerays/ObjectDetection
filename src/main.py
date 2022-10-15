@@ -4,17 +4,15 @@ import cv2
 from PIL import Image, ImageEnhance
 import numpy as np
 import os
-#import tensorflow as tf
-#import tensorflow_hub as hub
 import time ,sys
-from streamlit_embedcode import github_gist
 import urllib.request
 import urllib
-import moviepy.editor as moviepy
 import cv2
 import numpy as np
 import time
 import sys
+
+#import moviepy.editor as moviepy
 
 def object_detection_video():
     #object_detection_video.has_beenCalled = True
@@ -22,8 +20,8 @@ def object_detection_video():
     CONFIDENCE = 0.5
     SCORE_THRESHOLD = 0.5
     IOU_THRESHOLD = 0.5
-    config_path = r'config_n_weights\yolov3.cfg'
-    weights_path = r'config_n_weights\yolov3.weights'
+    config_path = r'model/yolov3.cfg'
+    weights_path = r'model/yolov3.weights'
     font_scale = 1
     thickness = 1
     url = "https://raw.githubusercontent.com/zhoroh/ObjectDetection/master/labels/coconames.txt"
@@ -179,8 +177,8 @@ def object_detection_image():
         #f = open(r'C:\Users\Olazaah\Downloads\stream\labels\coconames.txt','r')
         #lines = f.readlines()
         #classNames = [line.strip() for line in lines]
-        config_path = r'config_n_weights\yolov3.cfg'
-        weights_path = r'config_n_weights\yolov3.weights'
+        config_path = r'model/yolov3.cfg'
+        weights_path = r'model/yolov3.weights'
         net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
         net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
         net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
@@ -268,6 +266,7 @@ def main():
         read_me.empty()
         #st.title('Object Detection')
         object_detection_image()
+        '''
     elif choice == "Object Detection(Video)":
         read_me_0.empty()
         read_me.empty()
@@ -287,7 +286,10 @@ def main():
 
     elif choice == "About":
         print()
+                
         
+        '''
+
 
 if __name__ == '__main__':
-		main()	
+    main()
