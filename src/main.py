@@ -24,7 +24,7 @@ def object_detection_video():
     weights_path = r'model/yolov3.weights'
     font_scale = 1
     thickness = 1
-    url = "https://raw.githubusercontent.com/zhoroh/ObjectDetection/master/labels/coconames.txt"
+    url = "https://github.com/alexandrerays/ObjectDetection/blob/master/labels/coconames.txt"
     f = urllib.request.urlopen(url)
     labels = [line.decode('utf-8').strip() for  line in f]
     #f = open(r'C:\Users\Olazaah\Downloads\stream\labels\coconames.txt','r')
@@ -42,8 +42,7 @@ def object_detection_video():
     """
     )
     uploaded_video = st.file_uploader("Upload Video", type = ['mp4','mpeg','mov'])
-    if uploaded_video != None:
-        
+    if uploaded_video is not None:
         vid = uploaded_video.name
         with open(vid, mode='wb') as f:
             f.write(uploaded_video.read()) # save video to disk
@@ -58,15 +57,12 @@ def object_detection_video():
         h, w = image.shape[:2]
         #out = cv2.VideoWriter(output_name, cv2.VideoWriter_fourcc#(*'avc3'), fps, insize)
 
-
-
-
         fourcc = cv2.VideoWriter_fourcc(*'mpv4')
         out = cv2.VideoWriter("detected_video.mp4", fourcc, 20.0, (w, h))
         count = 0
         while True:
             _, image = cap.read()
-            if _ != False:
+            if _:
                 h, w = image.shape[:2]
                 blob = cv2.dnn.blobFromImage(image, 1/255.0, (416, 416), swapRB=True, crop=False)
                 net.setInput(blob)
@@ -150,33 +146,24 @@ def object_detection_video():
             
         cap.release()
         cv2.destroyAllWindows()
-        
-    
-        
-        
 
 def object_detection_image():
-    st.title('Object Detection for Images')
-    st.subheader("""
-    This object detection project takes in an image and outputs the image with bounding boxes created around the objects in the image
-    """)
-    file = st.file_uploader('Upload Image', type = ['jpg','png','jpeg'])
-    if file!= None:
+    st.title('Detecção de objetos para imagens')
+    st.subheader("""Este projeto de detecção de objetos recebe uma imagem e produz a imagem com caixas delimitadoras criadas em torno dos objetos na imagem.""")
+    file = st.file_uploader('Upload da Imagem', type = ['jpg','png','jpeg'])
+
+    if file is not None:
         img1 = Image.open(file)
         img2 = np.array(img1)
 
-        st.image(img1, caption = "Uploaded Image")
+        st.image(img1, caption = "Upload feito")
         my_bar = st.progress(0)
-        confThreshold =st.slider('Confidence', 0, 100, 50)
-        nmsThreshold= st.slider('Threshold', 0, 100, 20)
-        #classNames = []
+        confThreshold = st.slider('Confidence', 0, 100, 50)
+        nmsThreshold = st.slider('Threshold', 0, 100, 20)
         whT = 320
-        url = "https://raw.githubusercontent.com/zhoroh/ObjectDetection/master/labels/coconames.txt"
+        url = "https://github.com/alexandrerays/ObjectDetection/blob/master/labels/coconames.txt"
         f = urllib.request.urlopen(url)
         classNames = [line.decode('utf-8').strip() for  line in f]
-        #f = open(r'C:\Users\Olazaah\Downloads\stream\labels\coconames.txt','r')
-        #lines = f.readlines()
-        #classNames = [line.strip() for line in lines]
         config_path = r'model/yolov3.cfg'
         weights_path = r'model/yolov3.weights'
         net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
@@ -243,52 +230,39 @@ def object_detection_image():
 
 
 def main():
-    new_title = '<p style="font-size: 42px;">Welcome to my Object Detection App!</p>'
-    read_me_0 = st.markdown(new_title, unsafe_allow_html=True)
+    new_title = '<p style="font-size: 60px;">Bem vindos ao projeto de detecção de objetos!</p>'
+    main_title = st.markdown(new_title, unsafe_allow_html=True)
 
-    read_me = st.markdown("""
-    This project was built using Streamlit and OpenCV 
-    to demonstrate YOLO Object detection in both videos(pre-recorded)
-    and images.
-    
-    
-    This YOLO object Detection project can detect 80 objects(i.e classes)
-    in either a video or image. The full list of the classes can be found 
-    [here](https://github.com/KaranJagtiani/YOLO-Coco-Dataset-Custom-Classes-Extractor/blob/main/classes.txt)"""
-    )
-    st.sidebar.title("Select Activity")
-    choice  = st.sidebar.selectbox("MODE",("About","Object Detection(Image)","Object Detection(Video)"))
-    #["Show Instruction","Landmark identification","Show the #source code", "About"]
-    
-    if choice == "Object Detection(Image)":
-        #st.subheader("Object Detection")
-        read_me_0.empty()
-        read_me.empty()
-        #st.title('Object Detection')
+    description = st.markdown("""Este projeto foi construído usando Streamlit e OpenCV
+                             para demonstrar a detecção de objetos YOLO em ambos os vídeos (pré-gravados) e imagens.
+                             Este projeto de detecção de objetos YOLO pode detectar 80 objetos (ou seja, classes)
+                             em um vídeo ou imagem. A lista completa das aulas pode ser encontrada
+                             [here](https://github.com/alexandrerays/ObjectDetection/blob/master/labels/coconames.txt)""")
+
+    st.sidebar.title("Selecionar opção")
+
+    choice  = st.sidebar.selectbox("Tipo",("Sobre","Detecção de Objetos (Imagem)","Detecção de Objetos (Vídeo)"))
+
+    if choice == "Detecção de Objetos (Imagem)":
+        main_title.empty()
+        description.empty()
         object_detection_image()
-        '''
-    elif choice == "Object Detection(Video)":
-        read_me_0.empty()
-        read_me.empty()
-        #object_detection_video.has_beenCalled = False
-        object_detection_video()
-        #if object_detection_video.has_beenCalled:
-        try:
 
-            clip = moviepy.VideoFileClip('detected_video.mp4')
-            clip.write_videofile("myvideo.mp4")
-            st_video = open('myvideo.mp4','rb')
+    elif choice == "Detecção de Objetos (Vídeo)":
+        main_title.empty()
+        description.empty()
+        object_detection_video()
+        try:
+            clip = moviepy.VideoFileClip('input/videos/detected_video.mp4')
+            clip.write_videofile("input/videos/myvideo.mp4")
+            st_video = open('input/videos/myvideo.mp4','rb')
             video_bytes = st_video.read()
             st.video(video_bytes)
-            st.write("Detected Video") 
+            st.write("Detected Video")
         except OSError:
             ''
-
     elif choice == "About":
         print()
-                
-        
-        '''
 
 
 if __name__ == '__main__':

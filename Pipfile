@@ -8,6 +8,8 @@ jinja2 = "==3.0.0"
 pandas = "*"
 opencv-python = "*"
 streamlit = "*"
+moviepy = "==1.0.3"
+ffmpeg = "*"
 
 [dev-packages]
 
