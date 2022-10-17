@@ -2,25 +2,7 @@
 
 ### Pré-requisitos para execução do projeto:
 
-1. **Conta no gmail:** para poder criar um notebook do Google Colab e treinar o modelo.
-2. **Pyenv:** para poder instalar várias versões do Python (Opcional)
-3. **Pip:** gerenciador de pacotes para instalar libs do Python
-4. **Pipenv:** Gerenciador de variáveis de ambiente para poder criar vários ambientes diferentes.
-5. **IDE:** PyCharm, VSCode ou qualquer outro que te deixe mais confortável. Para poder criar e editar códigos. Neste tutorial irei utilizar o PyCharm.
-
-### Preparando o ambiente de desenvolvimento:
-
-Recomendo utilizar Linux/Mac pois esse tutorial não foi testado para o Windows.
-
-1. Criar conta no gmail.
-
-2. As instruções para instalar o pyenv podem ser encontradas [aqui](https://github.com/pyenv/pyenv).
-
-3. Para instalar o pip, seguir as intruções para [Mac](https://www.geeksforgeeks.org/how-to-install-pip-in-macos/), [Linux](https://www.geeksforgeeks.org/how-to-install-pip-in-linux/) e [Windows](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/#:~:text=Step%201%3A%20Download%20the%20get,where%20the%20above%20file%20exists.&text=Step%204%3A%20Now%20wait%20through,Voila!).
-
-4. Para instalar o pipenv, seguir as instruções para [Mac/Linux](https://pipenv.pypa.io/en/latest/) ou [Windows](https://www.pythontutorial.net/python-basics/install-pipenv-windows/).
-
-5. Você pode fazer o download da versão gratuita do PyCharm [aqui](https://www.jetbrains.com/pycharm/download/?source=google&medium=cpc&campaign=14127625370&term=pycharm&gclid=CjwKCAjwtKmaBhBMEiwAyINuwAPqj3d4hEYdFrnIrjFCfaF8ObyNt2guUWoTqWWeRQP_iVBDEA6WoxoCDS8QAvD_BwE#section=mac). Já o download do VSCode pode ser encontrado [aqui](https://code.visualstudio.com/download).
+As instruções para configuração do ambiente do tutorial podem ser encontradas [aqui](https://gist.github.com/alexandrerays/63f8d23115d9daa0096075fbf84f56d2).
 
 ### Como rodar (para Linux/Mac):
 
